@@ -1,5 +1,6 @@
 import React from 'react'
 
+// component for the search bar
 const SearchBar = ({searchQuery,handleSearchChange}:any) => {
   return (
     <form className="flex w-full justify-center ">

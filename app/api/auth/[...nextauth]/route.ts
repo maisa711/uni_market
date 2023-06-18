@@ -45,7 +45,8 @@ const handler = NextAuth({
               image: profile.picture,
             });
           }
-  
+          
+          // check if user is verified and email is gmail
           if (account.provider === "google") {
             return profile.email_verified && profile.email.endsWith("@gmail.com")
           }

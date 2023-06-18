@@ -1,12 +1,11 @@
 'use client'
 
-import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import ProfileInfo from "./ProfileInfo";
 
 const ShowProduct = ({ id }: any) => {
 
+    // empty product
     const prod = {
         creator: '',
         title: "",
@@ -18,6 +17,7 @@ const ShowProduct = ({ id }: any) => {
 
     const [product, setProduct] = useState(prod);
 
+    // get the product details from the api and set the product to that
     useEffect(() => {
         const getPromptDetails = async () => {
             const response = await fetch(`/api/product/${id}`);

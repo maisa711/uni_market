@@ -1,16 +1,17 @@
-'use client'
-
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-export default function CustomDropdown({ dropDownValue,onChangeDropDown, dropDownList, name}: any) {
+export default function CustomDropdown({ dropDownValue, onChangeDropDown, dropDownList, name }: any) {
 
-    const NAME = name;
+  const NAME = name;
   return (
     <div className="flex shrink-0">
       <Listbox value={dropDownValue} onChange={onChangeDropDown}>
+        
         <div className="w-[240px] relative mt-1">
+          
+          {/* current selection of the dropdown */}
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-product-card-bg py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm text-main-text">
             <span className="block truncate">{dropDownValue}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -20,19 +21,20 @@ export default function CustomDropdown({ dropDownValue,onChangeDropDown, dropDow
               />
             </span>
           </Listbox.Button>
+
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
+            {/* dropdown list */}
             <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {dropDownList.map((dropDownItem, dropDownItemIdx) => (
                 <Listbox.Option
                   key={dropDownItemIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
                     }`
                   }
                   value={dropDownItem}
@@ -40,9 +42,8 @@ export default function CustomDropdown({ dropDownValue,onChangeDropDown, dropDow
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
+                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                          }`}
                       >
                         {dropDownItem.name}
                       </span>

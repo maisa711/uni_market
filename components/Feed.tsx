@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { ProductCardList } from "./Helpers";
@@ -14,8 +13,10 @@ const Feed = ({ userid }: any) => {
 
   const [sortBy, setSortBy] = useState(sortByList[0].name);
   
+  // if there is userid passed as a parameter then fetch the products of that user else fetch all the products
   const userRes = userid ? `/api/users/${userid}/products` : "/api/product"
 
+  // Fetch the products from the database
   useEffect(() => {
     const getProducts = async () => {
       const res = await fetch(userRes);
@@ -42,6 +43,7 @@ const Feed = ({ userid }: any) => {
     filteredProducts = sortProducts(filteredProducts, sortBy)
   }
 
+  // if there is userid passed as a parameter then render the profile page else render the feed page
   return (
     <>
       {userid ? (

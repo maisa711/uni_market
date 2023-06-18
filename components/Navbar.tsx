@@ -15,8 +15,6 @@ const navigation = [
   { name: "Products", href: "/", current: true },
 ];
 
-
-
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -25,7 +23,7 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [providers, setProviders] = useState<any>(null);
 
-  // profile menu items
+  // profile menu dropdown items
   const profile = [
     { name: "Your Profile", href: `/profile/${session?.user?.id}`, onClick: () => { } },
     { name: "Sign out", href: "#", onClick: () => signOut() },
@@ -93,6 +91,7 @@ export default function Navbar() {
                 {/*check if user is logged in*/}
                 {session?.user ? (
                   <>
+                    {/*if the user is logged in show add product and profile menu*/}
                     <ProductModal />
                     <Menu as="div" className="relative ml-3">
                       <div>
@@ -141,6 +140,7 @@ export default function Navbar() {
 
                 ) : (
                   <>
+                  {/*if the user is not logged in show Log in button*/}
                     <Menu as="div" className="relative ml-3">
                       {providers &&
                         Object.values(providers).map((provider: any) => (

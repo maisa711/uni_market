@@ -3,6 +3,7 @@ import { ProductCardList } from "./Helpers";
 import { categories, sortByList} from '@utils/utilFuncs'
 import CustomDropdown from "./CustomDropdown";
 
+
 const Profile = ({ name, desc, data, handleDelete, searchQuery, setSearchQuery, category, setCategory, sortBy, setSortBy}: any) => {
     return (
         <section className="w-full max-w-full flex justify-start flex-col">
@@ -17,6 +18,7 @@ const Profile = ({ name, desc, data, handleDelete, searchQuery, setSearchQuery, 
                 <CustomDropdown dropDownValue={sortBy} onChangeDropDown={(e) => setSortBy( e.name )} dropDownList={sortByList} name={'SortBy'} />
             </div>
            
+           {/* render products */}
             <ProductCardList
                 data={data}
                 handleDelete={handleDelete}

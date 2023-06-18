@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
 
+// create a component that will render a list of products
 export const ProductCardList = ({data, handleDelete}:any) => {
     return (
         <div>

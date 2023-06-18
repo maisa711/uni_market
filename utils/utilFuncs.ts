@@ -1,4 +1,5 @@
 
+// categories for the dropdown menu
 export const categories = [
   { name: 'Choose Category' },
   { name: 'Electronics' },
@@ -13,6 +14,7 @@ export const categories = [
   { name: 'Other' },
 ]
 
+// sort by options for the dropdown menu
 export const sortByList = [
   { name: 'Sort By' },
   { name: 'A-Z'},
@@ -23,6 +25,7 @@ export const sortByList = [
   { name: 'Oldest' },
 ]
 
+// this is a function to sort the products by the option selected
 export const sortProducts = (products:any, option:any) => {
   switch (option) {
     case 'A-Z':
@@ -44,15 +47,18 @@ export const sortProducts = (products:any, option:any) => {
 
 
 // this is for Feed page to pass onto Profile
+// delete product
 export const handleDelete = async (product: any, products: any, setProducts: any) => {
   const hasConfirmed = confirm("Are you sure you want to delete this product?");
 
   if (hasConfirmed) {
     try {
+      // delete product from database based on product id
       await fetch(`/api/product/${product._id.toString()}`, {
         method: "DELETE",
       });
 
+      // filter out the deleted product from the products array
       const filteredPosts = products.filter((p: any) => p._id !== product._id);
       setProducts(filteredPosts);
     } catch (error) {
@@ -65,6 +71,7 @@ export const handleDelete = async (product: any, products: any, setProducts: any
 // this is for Product Modal Component
 export const createProduct = async (e: any, product:any, setSubmitting:any, session:any,closeModal:any) => {
   e.preventDefault();
+  // check if the user has selected a category
   if(product.category === categories[0].name) {
       alert('Please choose a category')
       return;
@@ -72,6 +79,7 @@ export const createProduct = async (e: any, product:any, setSubmitting:any, sess
   else {
       setSubmitting(true);
       try {
+        // create a new product in the database based on the user input
           const response = await fetch("/api/product/new", {
               method: "POST",
               body: JSON.stringify({
@@ -100,8 +108,10 @@ export const createProduct = async (e: any, product:any, setSubmitting:any, sess
 export const updateProduct = async (e: any, product:any, setSubmitting:any,closeModal:any) => {
   e.preventDefault();
   setSubmitting(true);
+  // check if the product exists
   if(!product._id) return alert("Product ID not found");
 
+  // update the product in the database based on the user input
   try {
       const response = await fetch(`/api/product/${product._id}`, {
           method: "PATCH",

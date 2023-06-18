@@ -1,9 +1,7 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
-
+// component for displaying profile info
 const ProfileInfo = ({
     profileId,
     image,
@@ -15,6 +13,7 @@ const ProfileInfo = ({
 
     return (
         <>
+            
             {isImageFirst ? (
                 <>
                     <Link href={`/profile/${profileId}`}>

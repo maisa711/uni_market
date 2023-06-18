@@ -7,9 +7,11 @@ import { Fragment, useState } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { categories, createProduct, updateProduct } from "@utils/utilFuncs";
 
+// component for creating and editing products if ExistingProduct is passed in then it will be an edit modal
 export default function ProductModal({ ExistingProduct }: any) {
     let [isOpen, setIsOpen] = useState(false);
 
+    // empty product
     let prod = {
         title: "",
         description: "",
@@ -17,6 +19,7 @@ export default function ProductModal({ ExistingProduct }: any) {
         category: categories[0].name,
     };
 
+    // if there is an existing product then set the product to that
     if (ExistingProduct) {
         prod = ExistingProduct;
     }
@@ -38,6 +41,7 @@ export default function ProductModal({ ExistingProduct }: any) {
 
     return (
         <div className="flex justify-end">
+            {/* if there is an existing product then it will be an edit modal button */}
             {ExistingProduct ? (
                 <>
                     <p
@@ -49,6 +53,7 @@ export default function ProductModal({ ExistingProduct }: any) {
                 </>
             ) : (
                 <>
+                {/* if there is no existing product then it will be an add modal button */}
                     <button
                         className=" hidden md:flex bg-primary-btn hover:bg-primary-btn-hover  text-black py-2 px-4 rounded-full flex-row gap-2"
                         onClick={openModal}
@@ -95,6 +100,7 @@ export default function ProductModal({ ExistingProduct }: any) {
                                 <Dialog.Panel className=" z-10 w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all bg-main-bg">
                                     {ExistingProduct ? (
                                         <>
+                                        {/* if there is an existing product then it will be an edit modal */}
                                             <Form
                                                 type="Edit"
                                                 product={product}
@@ -108,6 +114,7 @@ export default function ProductModal({ ExistingProduct }: any) {
                                         </>
                                     ) : (
                                         <>
+                                        {/* if there is no existing product then it will be an add modal */}
                                             <Form
                                                 type="Create"
                                                 product={product}

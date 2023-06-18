@@ -7,6 +7,7 @@ import ProfileInfo from "./ProfileInfo";
 import ProductModal from "./ProductModal";
 
 
+// if the title or description is too long, shorten it and add "..."
 const shortenString = (str: string, maxLen = 50) => {
   if (str.length > maxLen) {
     return str.substring(0, maxLen) + "...";
@@ -25,6 +26,7 @@ const ProductCard = ({ product, handleDelete }: any) => {
       <div className="card">
         <div className="side front bg-product-card-bg">
           <div className=" p-6 h-full w-auto flex flex-col gap-4">
+            {/*every product has its own page based on id*/}
             <Link
               href={`/product/${`${product._id}`}`}
               className="h-full w-auto flex flex-col gap-4"
@@ -58,6 +60,7 @@ const ProductCard = ({ product, handleDelete }: any) => {
               </Link>
               <div className="flex flex-row items-center">
                 <div className="grow flex flex-row items-center h-full">
+                  {/*if the user is on their own profile page they can edit or delete their product*/}
                   {session?.user?.id === product.creator._id &&
                     pathN === `/profile/${session?.user?.id}` ? (
                     <div className="flex flex-row gap-4 flex-grow">
@@ -75,7 +78,7 @@ const ProductCard = ({ product, handleDelete }: any) => {
                   )}
                 </div>
                 <div className="flex flex-row items-center gap-4">
-
+                    {/*Profile Icon that lets you go to the profile page */}
                   <ProfileInfo
                     profileId={product.creator._id}
                     image={product.creator.image}

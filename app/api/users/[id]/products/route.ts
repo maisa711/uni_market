@@ -4,8 +4,10 @@ import Product from "@models/product";
 export const GET = async (req: Request, {params}:any) => {
 
     try {
+        // connect to db
         await connectToDB();
 
+        // fetch all products based on creator id
         const products = await Product.find({
             creator: params.id
         }).populate("creator");
